@@ -92,8 +92,8 @@ ENV/
 *.npz
 
 #Images
-*.png
-*.svg
+#*.png
+#*.svg
 *.gif
 
 #Latex
