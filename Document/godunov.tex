@@ -156,6 +156,12 @@ Q_{\mathrm{i}}^\mathrm{n} \simeq \frac{1}{h} \int _{C_\mathrm{i}} q(x,t_\mathrm{
 \end{equation}
 η οποία είναι η εξίσωση του νόμου διατήρησης. Ακρι
 }
+\begin{marginfigure}
+	\centering
+	\includegraphics[width=1\linewidth]{Images/FVM}
+	\caption{}
+	\label{fig:fvm}
+\end{marginfigure}
 
 
 διαιρώντας με $h$ και αντικαθιστώντας τις $Q_{\mathrm{i}}^\mathrm{n}$ βρίσκουμε την εξέλιξη στο χρόνο
@@ -175,36 +181,50 @@ F_{\mathrm{i}}^\mathrm{n} \simeq \frac{1}{k}\int_{t_\mathrm{n}}^{t_\mathrm{n}}f(
 \begin{equation}
 F_{\mathrm{i}}^\mathrm{n} = F\left( Q_{\mathrm{i-1}}^\mathrm{n} ,Q_{\mathrm{i}}^\mathrm{n} \right) 
 \end{equation}
-άρα αν γνωρίσουμε αυτή τη συνάρτηση ροής τότε μπορούμε να υπολογίσουμε την εξέλιξη στο χρόνο της μέσης τιμής του κάθε κελιού
+άρα αν γνωρίζουμε αυτή τη συνάρτηση ροής τότε μπορούμε να υπολογίσουμε την εξέλιξη στο χρόνο της μέσης τιμής του κάθε κελιού
 \begin{equation}
 Q_{\mathrm{i}}^\mathrm{n+1} = Q_{\mathrm{i}}^\mathrm{n} - \frac{k}{h}\left(
 F\left( Q_{\mathrm{i}}^\mathrm{n} ,Q_{\mathrm{i+1}}^\mathrm{n} \right)-
 F\left( Q_{\mathrm{i-1}}^\mathrm{n} ,Q_{\mathrm{i}}^\mathrm{n} \right)
  \right) 
 \end{equation} 
+
+Η μέθοδος (ή καλύτερα η οικογένεια μεθόδων) που ακολουθούμε στην εύρεση των συναρτήσεων ροής ονομάζεται μέθοδος Godunov, από τον Sergei K. Godunov που πρώτος την εισήγαγε το 1959. Η μέθοδος αυτή βασίζεται στην επίλυση του προβλήματος Riemann μεταξύ των κελιών.
+Παρακάτω θα αναπτύξουμε το πως λύνεται το πρόβλημα Riemann.
  
 
 \subsection{Πρόβλημα Riemann}
-Το πρόβλημα Riemann είναι η επίλυση ενός νόμου διατήρησης όπως τον έχουμε ορίσει παραπάνω με αρχικές συνθήκες όπου υπάρχει μια ασυνέχεια:
+Το πρόβλημα Riemann είναι η επίλυση του νόμου διατήρησης της μορφής
+\begin{equation}
+\pdv{\bar{q}}{t}+\pdv{f(\bar{q})}{x}=0
+\end{equation}
+με αρχικές συνθήκες όπου υπάρχει μια ασυνέχεια:
 \begin{equation}
 \bar{q}(x,0)=
 \begin{cases}
 \bar{q}_\mathrm{L} &\qq{για} x<0 \\
-\bar{q}_R &\qq{για} x>0 
+\bar{q}_\mathrm{R} &\qq{για} x>0 
 \end{cases}
 \end{equation}
 
-Όπως βλέπουμε χαρακτηριστικά και στο shock tube problem (\ref{fig:sodleveque}), λόγω της αρχικής ασυνέχειας και της μη-γραμμικότητας των εξισώσεων euler έχουμε σαν αποτέλεσμα τη δημιουργία κρουστικών κυμάτων.
-
+%Όπως βλέπουμε χαρακτηριστικά και στο shock tube problem (\ref{fig:sodleveque}), λόγω της αρχικής ασυνέχειας και της μη-γραμμικότητας των εξισώσεων euler έχουμε σαν αποτέλεσμα τη δημιουργία κρουστικών κυμάτων.
+Για να δώσουμε μια αναλυτική λύση στο γενικό πρόβλημα (μη-γραμμικό) Riemann θα ξεκινήσουμε από τη γραμμική περίπτωση.
 
 \subsubsection{Γενική επίλυση του γραμμικού προβλήματος Riemann}
-Η επίλυση του προβλήματος Riemann στη γραμμική περίπτωση (\ref{eq:linearhyperbolic}) βασίζεται στο μετασχηματισμό των ποσοτήτων $q$ στις λεγόμενες χαρακτηριστικές μεταβλητές $\bar{\xi}=\mathbf{R}^{-1}\bar{q}$ όπου $\mathbf{R}=(\bar{r}_1,\bar{r}_2,\cdots \bar{r}_m)$ ο πίνακας των ιδιοανυσμάτων του πίνακα $\mathbf{A}=\mathbf{R}\mathbf{\Lambda}\mathbf{R}^{-1}$. Με $\bar{\Lambda}=\mathtt{diag}(\lambda _1,\lambda _2,\cdots \lambda _m)$ ο διαγώνιος πίνακας των ιδιοτιμών.
+Η επίλυση του προβλήματος Riemann στη γραμμική περίπτωση του νόμου διατήρησης, δηλαδή στο σύστημα
+\begin{equation}
+\pdv{\bar{q}}{t} +  \mathbf{A}\pdv{\bar{q}}{x}  = 0 
+\end{equation}
+ βασίζεται στο μετασχηματισμό των ποσοτήτων $\bar{q}$ στις λεγόμενες χαρακτηριστικές μεταβλητές $\bar{\xi}=\mathbf{R}^{-1}\bar{q}$ όπου $\mathbf{R}=(\bar{r}_1,\bar{r}_2,\cdots \bar{r}_m)$ είναι ο πίνακας των ιδιοανυσμάτων του πίνακα $\mathbf{A}$, ενώ με $\bar{\Lambda}=\mathtt{diag}(\lambda _1,\lambda _2,\cdots \lambda _m)$ ορίζουμε το διαγώνιο πίνακα των ιδιοτιμών. Για τον πίνακα $\mathbf{A}$ ισχύει\ ότι $\mathbf{A}=\mathbf{R}\bar{\Lambda}\mathbf{R}^{-1}$.
 
 Οι εξισώσεις τότε γράφονται:
 \begin{equation}
 \pdv{\bar{\xi}}{t} + \bar{\Lambda} \div\bar{\xi} =0
 \end{equation} 
-δηλαδή σαν ένα διαχωρισμένο σύστημα εξισώσεων της μορφής \ref{eq:simple_advection} με λύσεις:
+δηλαδή σαν ένα διαχωρισμένο σύστημα εξισώσεων της μορφής 
+\begin{equation}
+\pdv{q}{t} +  u\pdv{q}{x}  = 0 
+\end{equation} που όπως έχουμε δει ήδη έχουν λύσεις:
 \begin{equation}
 \label{eq:xi_solution}
 \xi_p  = \xi_p(x-\lambda _p t,0) 
@@ -216,12 +236,26 @@ F\left( Q_{\mathrm{i-1}}^\mathrm{n} ,Q_{\mathrm{i}}^\mathrm{n} \right)
 \bar{q}(x,t) = \sum_{p=1}^{m} \xi_p(x-\lambda _p t,0)\bar{r}_p
 \end{equation}
 
+\begin{marginfigure}
+	\centering
+	\label{fig:linearriemann-leveque}
+	\includegraphics[width=1\linewidth]{Images/reimannlinear.png}
+	\caption{Γραφική απεικόνιση της λύση του γραμμικού προβλήματος Riemann για $p=3$. 
+		Τη χρονική στιγμή $t_1$ οι λύσεις σε κάθε σημείο του χώρου καθορίζονται απόλυτα από τις $p$ χαρακτηριστικές ιδιοτιμές $\lambda _p$ έτσι ώστε η τελική λύση για κάθε σημείο $x$ να είναι ο γραμμικός συνδυασμός των περιοχών που επηρεάζουν αυτό το σημείο, δηλαδή}	
+	\begin{align*}
+	q(x_1,t_1)&=\xi _1 ^L r_1 +\xi _2 ^L r_2 + \xi _3 ^L r_3 \\
+	q(x_2,t_1)&=\xi _1 ^R r_1 +\xi _2 ^L r_2 + \xi _3 ^L r_3 \\
+	q(x_3,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^L r_3 \\
+	q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3 
+	\end{align*} 
+	
+\end{marginfigure}
 Για τις αρχικές συνθήκες του προβλήματος Riemann o μετασχηματισμός μας δίνει:
 \begin{equation}
 \xi_p (x,0) =
 \begin{cases}
-u^L_p &\qq{για} x<0 \\
-u^R_p &\qq{για} x>0 
+\xi^\mathrm{L}_p &\qq{για} x<0 \\
+\xi^\mathrm{R}_p &\qq{για} x>0 
 \end{cases}
 \end{equation} 
 
@@ -229,19 +263,13 @@ u^R_p &\qq{για} x>0
 \begin{equation}
 \xi_p (x,t) =
 \begin{cases}
-u^L_p &\qq{για} x-\lambda _p t<0 \\
-u^R_p &\qq{για} x-\lambda _p t>0 
+\xi^\mathrm{L}_p &\qq{για} x-\lambda _p t<0 \\
+\xi^\mathrm{R}_p &\qq{για} x-\lambda _p t>0 
 \end{cases}
 \end{equation} 
 
-\begin{marginfigure}
-	\label{fig:linearriemann-leveque}
-	\centering
-	\includegraphics[width=1\linewidth]{Images/LinearRiemann-leveque}
-	\caption{Λυση γραμμικου riemann}
-\end{marginfigure}
 
-φσαδα 
+
 
 Άρα με αρχικές συνθήκες Riemann, βλέπουμε ότι η λύση για τις μετασχηματισμένη μεταβλητή $\xi _p$ σε ένα οποιαδήποτε σημείο εξαρτάται απόλυτα αό τη σχετική θέση σε σχέση με την αντίστοιχη χαρακτηριστική καμπύλη της $\lambda _p$.  
 
@@ -253,6 +281,32 @@ u^R_p &\qq{για} x-\lambda _p t>0
 \todo{Επιλυση γραμμικου Riemann διαγραμμα}
 
 \subsubsection{Επίλυση του μη γραμμικού προβλήματος Riemann}
+Στη μη γραμμική περίπτωσή των νόμων διατήρησης, όπως είναι και οι εξισώσεις Euler, η συνάρτηση ροής της διατηρούμενης ποσότητας εξαρτάται πια από την ίδια τη ποσότητα, δηλαδή:
+\begin{equation}
+\pdv{t} \bar{q}(x,t) + \pdv{x} \bar{f}(\bar{q}(x,t)) = 0 
+\end{equation}
+
+Για ομαλές λύσεις μπορούμε να μετασχηματίσουμε το παραπάνω σύστημα μέσω της ιακωβιανής $\mathbf{J} =\mathbf{f}'$
+\begin{equation}
+\pdv{t} \bar{q}(x,t) + \mathbf{J}(q(x,t)) \pdv{q}{x}  = 0 
+\end{equation}
+
+Λειτουργώντας όπως και στη γραμμική περίπτωση παρατηρούμε ότι οι ιδιοτιμές και τα ιδιοανύσματα της ιακωβιανής είναι συναρτήσεις των ποσοτήτων $q_\mathrm{j}$. Δηλαδή οι κλίσεις των χαρακτηριστικών καμπύλων μπορούν να αλλάζουν κλίση στο χώρο και στο χρόνο. Συμπεραίνουμε έτσι ότι σε περιοχές ανάμεσα σε αυτές οι λύσεις περιγράφονται ακριβώς όπως και στη γραμμική περίπτωση.
+\begin{marginfigure}
+	\centering
+	\includegraphics[width=1\linewidth]{Images/shockwave}
+	\caption{}
+	\label{fig:shockwave}
+\end{marginfigure}
+
+
+\begin{marginfigure}
+	\centering
+	\includegraphics[width=1\linewidth]{Images/rarefuctionwave}
+	\caption{}
+	\label{fig:rarefuctionwave}
+\end{marginfigure}
+
 
 
 \subsection{Κώδικας PLUTO}
