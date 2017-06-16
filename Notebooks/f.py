@@ -18,6 +18,8 @@ rcParams['text.latex.preamble'] = ['\\usepackage{siunitx}']
 
 global mp
 mp=1.67e-24
+global mu
+mu=1.
 global kb
 kb=1.38e-16
 global Gcgs
@@ -33,7 +35,7 @@ PRS0=RHO0*V0**2
 global t0
 t0=L0/V0
 global Temp0
-Temp0=V0**2*(mp/kb)
+Temp0=V0**2*(mu*mp/kb)
 global B0
 B0=np.sqrt(4.*np.pi*RHO0*V0**2)
 global G0
@@ -87,15 +89,73 @@ def div(F):
 def grad(F):
     return np.sqrt(np.gradient(F)[0]**2+np.gradient(F)[1]**2)
 
+def pprofile(c,VAR,VAR2=None,steps=5,itlim=-1,ix=128,yprop=128,tdk='Myrs',yl='n $(\si{cm^{-3}})$',yl2='Pressure',y0=1.0,
+              alpha=1.0,alpha2=1.0,sc1='log',sc2='linear',secopt='left',Save_Figure='',xlim=[None,None],ylim=[None,None],):
+    
+    if (VAR2<> None and secopt=='left'): 
+        plt.figure(figsize=(12,5.2))
+    else: #ax.set_aspect('equal')
+        plt.figure(figsize=(7.5,6.5))
+    ax=plt.subplot()
+    datafolder='../Document/DataImages/'
+    T=np.linspace(0,c['T'][:itlim].shape[0]-1,steps,dtype=int)
+    if VAR == 'Cs' :
+        d=1e-5 *V0*np.sqrt(5./3. *c['PRS']/c['RHO'])
+    else:    
+        d=y0*c[VAR] if VAR <> 'Temp' else c['PRS']*Temp0/c['RHO']
+    
+    if VAR2<>None:
+        ax2=ax.twinx()
+        ax2.set_ylabel(yl2)
+        if secopt=='left':
+            ax.yaxis.tick_right()
+            ax.yaxis.set_label_position("right")
+            ax2.yaxis.tick_left()
+            ax2.yaxis.set_label_position("left")
+            ax.vlines(0,0.8*d.min(),1.4*d.max(),linewidth=0.5)
+            ls='-'
+        else:
+            ls='--'
+        d2=y0*c[VAR2] if VAR2 <> 'Temp' else c['PRS']*f.Temp0/c['RHO']
+        ax2.set_yscale(sc2)
+    td= 1e6 if tdk == 'Myrs' else 1e3 if tdk == 'kyrs' else 1.
+    for t in T:
+        ax.plot(c['X'][ix:]*10.,d[yprop,ix:,t],label='{:.1f} {}'.format(c['T'][t]/td,tdk),alpha=alpha)
+        if VAR2<>None:
+            if secopt=='left': 
+                ax2.plot(c['X'][:ix]*10,d2[yprop,:ix,t],linestyle=ls,label='{:.1f} {}'.format(c['T'][t]/td,tdk),
+                                alpha=alpha2)
+            else:
+                ax2.plot(c['X'][ix:]*10,d2[yprop,ix:,t],linestyle=ls,label='{:.1f} {}'.format(c['T'][t]/td,tdk),
+                                alpha=alpha2)
+    if steps<8: 
+        ax.legend(loc='best')
+    ax.set_ylim(0.8*d.min(),1.4*d.max()) 
+    if VAR2<>None:
+        ax2.set_xlim(xlim[0],xlim[1])
+        ax2.set_ylim(ylim[0],ylim[1])
+        if secopt=='left':
+            ax.yaxis.tick_right()
+            ax.yaxis.set_label_position("right")
+    ax.set_xlabel('X $(\si{pc})$')
+    ax.set_ylabel(yl)
+    ax.set_yscale(sc1)
+    ax.set_xlim(xlim[0],xlim[1])
+    ax.set_ylim(ylim[0],ylim[1])
+    plt.tight_layout()
+    form='.png'
+    if Save_Figure <> '': plt.savefig(datafolder+Save_Figure+form,bbox_inches='tight',format='png', dpi=100)
+
 def quadruple(d,VAR,tdk='Myrs',Save_Figure='',cl='',nn=0,mspeed='km',rows=2,cols=2,xlim=[None,None],
-              ylim=[None,None],datafolder='../Document/DataImages/'):
+              ylim=[None,None],tlim=None,datafolder='../Document/DataImages/'):
     """
     Plot a rows(=2) x cols(=2) Variable 
     """
     X,Y=d['X'],d['Y']
     Vx=d['Vx'] if nn>0 else 0
     Vy=d['Vy'] if nn>0 else 0
-    T=np.linspace(0,d['T'].shape[0]-1,rows*cols,dtype=int)
+    T=np.linspace(0,d['T'].shape[0]-1,rows*cols,dtype=int) if tlim==None else np.linspace(0,tlim,rows*cols,dtype=int)
+
     fig, axes = plt.subplots(nrows=rows, ncols=cols, sharex=True, sharey=True,
                             figsize=(cols*5,rows*5))
     i=0
@@ -138,8 +198,63 @@ def quadruple(d,VAR,tdk='Myrs',Save_Figure='',cl='',nn=0,mspeed='km',rows=2,cols
     cb.ax.xaxis.offsetText.set(size=20)
     cb.ax.xaxis.set_ticks_position('top')
     cb.ax.xaxis.set_label_position('top')
-    if (Save_Figure<>''):
-        plt.savefig(datafolder+Save_Figure,bbox_inches='tight')
+    form='.png'
+    if Save_Figure <> '': plt.savefig(datafolder+Save_Figure+form,bbox_inches='tight',format='png', dpi=100)
+
+
+        
+def dprofile(c1,c2,VAR,steps=15,itlim=-1,ix=128,tdk='Myrs',yl='n $(\si{cm^{-3}})$',y0=1.0,alpha=0.2,Save_Figure='',xlim=[None,None],
+              ylim=[None,None]):
+    plt.figure(figsize=(7.5,5.2))
+    datafolder='../Document/DataImages/'
+    T=np.linspace(0,min(c1['T'][:itlim].shape[0],c2['T'][:itlim].shape[0])-1,steps,dtype=int)
+    if VAR == 'Cs' :
+        d1=1e-5 *V0*np.sqrt(5./3. *c1['PRS']/c1['RHO'])
+        d2=1e-5 *V0*np.sqrt(5./3. *c2['PRS']/c2['RHO'])
+    else:  
+        d1=c1[VAR] if VAR <> 'Temp' else c1['PRS']*Temp0/c1['RHO']
+        d2=c2[VAR] if VAR <> 'Temp' else c2['PRS']*Temp0/c2['RHO']
+    td= 1e6 if tdk == 'Myrs' else 1e3 if tdk == 'kyrs' else 1.
+    for t in T:
+        plt.plot(c1['X'][ix:]*10.,y0*d1[d1.shape[0]/2,ix:,t],label='{:.1f} {}'.format(c1['T'][t]/td,tdk),alpha=alpha)
+        plt.plot(c2['X'][ix:]*10.,y0*d2[d2.shape[0]/2,ix:,t],'--',label='{:.1f} {}'.format(c2['T'][t]/td,tdk),alpha=alpha)
+    if steps<8: 
+        plt.legend(loc='best')
+    plt.ylim(0.8*min(d1.min(),d2.min()),1.4*max(d1.max(),d2.max()))  
+    plt.xlim(xlim)
+    plt.xlabel('X $(\si{pc})$')
+    plt.ylabel(yl)
+    plt.yscale('log')
+    plt.tight_layout()
+    form='.png'
+    if Save_Figure <> '': plt.savefig(datafolder+Save_Figure+form,bbox_inches='tight')
+
+def d3profile(c1,c2,VARS=['RHO','PRS','Temp'],steps=15,itlim=-1,ix=128,tdk='Myrs',
+              yl=['n $(\si{cm^{-3}})$','Pressure (code units)','Temperature (K)'],
+              alpha=0.35,Save_Figure=''):
+    fig, axes = plt.subplots(nrows=3, ncols=1, sharex=True,figsize=(7.5,15))
+    datafolder='../Document/DataImages/'
+    T=np.linspace(0,min(c1['T'][:itlim].shape[0],c2['T'][:itlim].shape[0])-1,steps,dtype=int)
+    
+    for i,ax in enumerate(axes.flat):
+        VAR=VARS[i]
+        d1=c1[VAR] if VAR <> 'Temp' else c1['PRS']*f.Temp0/c1['RHO']
+        d2=c2[VAR] if VAR <> 'Temp' else c2['PRS']*f.Temp0/c2['RHO']
+        td= 1e6 if tdk == 'Myrs' else 1e3 if tdk == 'kyrs' else 1.
+        for t in T:
+            a=(0.6/T.shape[0])*t+0.4*np.exp(-(t-T.shape[0])**2)
+            ax.plot(c1['X'][ix:]*10.,d1[d1.shape[0]/2,ix:,t],label='{:.1f} {}'.format(c1['T'][t]/td,tdk),alpha=a)
+            ax.plot(c2['X'][ix:]*10.,d2[d2.shape[0]/2,ix:,t],'--',label='{:.1f} {}'.format(c2['T'][t]/td,tdk),alpha=a)
+        if steps<8: 
+            ax.legend(loc='best')
+        ax.set_ylim(0.8*min(d1.min(),d2.min()),1.4*max(d1.max(),d2.max()))
+        ax.set_ylabel(yl[i])
+        ax.set_yscale('log')
+    ax.set_xlabel('X $(\si{pc})$')
+    ax.set_xlim(xlim[0],xlim[1])
+    ax.set_ylim(ylim[0],ylim[1])
+    plt.tight_layout()
+    if Save_Figure <> '': plt.savefig(datafolder+Save_Figure,bbox_inches='tight')        
 
 def RadiusPlot(c,tdk='Myrs',radscale=80./256.,mid=256/2,Save_Figure='',datafolder='../Document/DataImages/'):
     td=1e6 if tdk=='Myrs' else 1e3
