@@ -147,7 +147,7 @@ def pprofile(c,VAR,VAR2=None,steps=5,itlim=-1,ix=128,yprop=128,tdk='Myrs',yl='n 
     if Save_Figure <> '': plt.savefig(datafolder+Save_Figure+form,bbox_inches='tight',format='png', dpi=100)
 
 def quadruple(d,VAR,tdk='Myrs',Save_Figure='',cl='',nn=0,mspeed='km',rows=2,cols=2,xlim=[None,None],
-              ylim=[None,None],tlim=None,datafolder='../Document/DataImages/'):
+              ylim=[None,None],tlim=None,VARlim=[None,None],datafolder='../Document/DataImages/'):
     """
     Plot a rows(=2) x cols(=2) Variable 
     """
@@ -160,6 +160,9 @@ def quadruple(d,VAR,tdk='Myrs',Save_Figure='',cl='',nn=0,mspeed='km',rows=2,cols
                             figsize=(cols*5,rows*5))
     i=0
     td=1e3 if tdk=='kyrs' else 1e6
+    vmin=VARlim[0] if VARlim[0]==None else VAR.min()
+    vmax=VARlim[1] if VARlim[1]==None else VAR.max()
+    
     for ax in axes.flat:
         ext=[X.min(),X.max(),Y.min(),Y.max()]
         ax.get_yaxis().get_major_formatter().set_useOffset(False)
