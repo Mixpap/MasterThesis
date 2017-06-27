@@ -160,8 +160,8 @@ def quadruple(d,VAR,tdk='Myrs',Save_Figure='',cl='',nn=0,mspeed='km',rows=2,cols
                             figsize=(cols*5,rows*5))
     i=0
     td=1e3 if tdk=='kyrs' else 1e6
-    vmin=VARlim[0] if VARlim[0]==None else VAR.min()
-    vmax=VARlim[1] if VARlim[1]==None else VAR.max()
+    vvmin=VARlim[0] if VARlim[0]<>None else VAR.min()
+    vvmax=VARlim[1] if VARlim[1]<>None else VAR.max()
     
     for ax in axes.flat:
         ext=[X.min(),X.max(),Y.min(),Y.max()]
@@ -171,7 +171,7 @@ def quadruple(d,VAR,tdk='Myrs',Save_Figure='',cl='',nn=0,mspeed='km',rows=2,cols
         ax.set_title(label,fontsize=20)
         ax.grid(False)
         pc = ax.imshow(VAR[:,:,T[i]].T,cmap='viridis',origin='lower',aspect='equal',
-                       extent=ext,vmin=VAR.min(),vmax=VAR.max())
+                       extent=ext,vmin=vvmin,vmax=vvmax)
         if nn>0:
             k=nn #distance from boundaries for first/last arrows
             sc=2. if mspeed =='max' else 5. if mspeed == 'c' else 1e-4
@@ -223,7 +223,7 @@ def dprofile(c1,c2,VAR,steps=15,itlim=-1,ix=128,tdk='Myrs',yl='n $(\si{cm^{-3}})
         plt.plot(c2['X'][ix:]*10.,y0*d2[d2.shape[0]/2,ix:,t],'--',label='{:.1f} {}'.format(c2['T'][t]/td,tdk),alpha=alpha)
     if steps<8: 
         plt.legend(loc='best')
-    plt.ylim(0.8*min(d1.min(),d2.min()),1.4*max(d1.max(),d2.max()))  
+    plt.ylim(0.8*min(y0*d1.min(),y0*d2.min()),1.4*max(y0*d1.max(),y0*d2.max()))  
     plt.xlim(xlim)
     plt.xlabel('X $(\si{pc})$')
     plt.ylabel(yl)

@@ -225,7 +225,7 @@
 		\begin{itemize}
 			\item{(90\%) Υδρογόνο  \ce{(H)}, \ce{(HII)}, \ce{(H2)}}	
 			\item{(9\%) Ήλιο }	
-			\item{(1\%) Βαρύτερα στοιχεία  (\ce{C},\ce{O},\ce{Ne},\ce{Mg},\ce{Fe}, κ.α.) και μόρια (\ce{CO},\ce{CS}, κ.α.).}
+			\item{(1\%) Βαρύτερα στοιχεία  (\ce{C},\ce{O},\ce{Ne},\ce{Mg},\ce{Fe}, κ.α.) και άλλα μόρια (\ce{CO},\ce{CS}, κ.α.).}
 		\end{itemize}
 
 %		\begin{itemize}
@@ -416,9 +416,9 @@ dE = \bar{d}Q - dW
 
 \begin{frame}{Μηχανισμοί Θέρμανσης}{Διάχυτη Ακτινοβολία (2)}
 	\begin{description}
-		\item[κοσμικό υπόβαθρο (\SI{11.3}{Hz})]{Τα φωτόνια του κοσμικού υποβάθρου θερμαίνουν τα μοριακά νέφη διεγείροντας τις χαμηλότερες περιστροφικές ενεργειακές στάθμες του \ce{CO}.}
-		\item[εκπομπή σκόνης (\SI{12.4}{Hz})]{Τα μοριακά νέφη είναι διάφανα σε αυτή την ακτινοβολία}
-		\item[εκπομπή αστέρων (\SI{14.5}{Hz})]{Διέγερση ηλεκτρόνιων που δεν καταφέρνουν να δραπετεύσουν από τους κόκκους σκόνης και τους θερμαίνουν}
+		\item[κοσμικό υπόβαθρο (\SI{1e11.3}{Hz})]{Τα φωτόνια του κοσμικού υποβάθρου θερμαίνουν τα μοριακά νέφη διεγείροντας τις χαμηλότερες περιστροφικές ενεργειακές στάθμες του \ce{CO}.}
+		\item[εκπομπή σκόνης (\SI{1e12.4}{Hz})]{Τα μοριακά νέφη είναι διάφανα σε αυτή την ακτινοβολία}
+		\item[εκπομπή αστέρων (\SI{1e14.5}{Hz})]{Διέγερση ηλεκτρόνιων που δεν καταφέρνουν να δραπετεύσουν από τους κόκκους σκόνης και τους θερμαίνουν}
 		 \begin{block}{Θέρμανση των κόκκων σκόνης}
 		 	\begin{equation}
 		 	\Gamma _\mathtt{d} = \num{3.2e-21} \left( \frac{n_{\ce{H}}}{\SI{1e3}{cm^{-3}}} \right) \qq{(\si{erg.cm^{-3}.s^{-1}})} 
@@ -430,7 +430,7 @@ dE = \bar{d}Q - dW
 
 \begin{frame}{Μηχανισμοί Θέρμανσης}{Διάχυτη Ακτινοβολία (3)}
 	\begin{description}
-		\item[υπεριώδες (\SI{15.3}{Hz})]{Ιονισμός του ατομικού άνθρακα (\ce{CI}) ($\frac{n_{\ce{CI}}}{n_{\ce{H}}} =\num{3e-4}$, ενέργεια ιονισμού στα \SI{11.2}{eV}) και ιονισμός και απελευθέρωση ηλεκτρονίων από τους κόκκους σκόνης}
+		\item[υπεριώδες (\SI{1e15.3}{Hz})]{Ιονισμός του ατομικού άνθρακα (\ce{CI}) ($\frac{n_{\ce{CI}}}{n_{\ce{H}}} =\num{3e-4}$, ενέργεια ιονισμού στα \SI{1e11.2}{eV}), ιονισμός και απελευθέρωση ηλεκτρονίων από τους κόκκους σκόνης}
 		\end{description}
 		\begin{block}{Θέρμανση μέσω ιονισμού του άνθρακα}
 			  \begin{equation}
@@ -444,12 +444,68 @@ dE = \bar{d}Q - dW
 	\end{block}	
 \end{frame}
 
-\begin{frame}{Μηχανισμοί Θέρμανσης}{Άλλοι μηχανισμοί}
-	
+%\begin{frame}{Μηχανισμοί Θέρμανσης}{Άλλοι μηχανισμοί}
+%	
+%\end{frame}
+
+\begin{frame}{Μηχανισμοί Ψύξης}{Ψύξη μέσω αλληλεπίδρασης ηλεκτρονίου - ιόντος}
+	\begin{columns}
+		\column{0.35\textwidth}
+\begin{center}
+	\includegraphics[height=0.7\textheight]{../Document/Images/eiCoolingFunction}
+\end{center}
+
+		\column{0.65\textwidth}
+		\begin{itemize}
+			\item{Σημαντικός μηχανισμός στο Μεσοαστρικό αέριο λόγω μεγαλύτερου ιονισμού}
+		\end{itemize}
+		\begin{equation}
+		\Lambda _\mathtt{ei}=\num{8.6e-6} n_\mathtt{e} n_\mathtt{iu}T^{-1/2} e^{-E_\mathtt{ul}/k_b T}\frac{E_\mathtt{ul}\Omega (\mathtt{u,l})}{g_\mathtt{u}} \qq{(\si{erg.cm^{-3}.s^{-1}})} 
+		\end{equation}
+	\end{columns}
 \end{frame}
 
-\begin{frame}{Μηχανισμοί Ψύξης}%{Άλλοι μηχανισμοί}
-	
+\begin{frame}{Μηχανισμοί Ψύξης}{Ψύξη μέσω αλληλεπίδρασης Υδρογόνου - ιόντος}
+	\begin{description}
+		\item[$n_{\ce{H}}<n_\mathtt{crit}=A_\mathtt{ul}/\gamma _\mathtt{ul}$]{	
+			\begin{equation}
+			\Lambda _\mathtt{H.ul} = n_\mathtt{l} n_{\ce{H}} \gamma _\mathtt{ul} \Delta E _\mathtt{ul} = \frac{g_\mathtt{u}}{g_\mathtt{l}} n_\mathtt{l} n_{\ce{H}} \gamma _\mathtt{ul} \Delta E_\mathtt{ul} e^{-T_o/T}
+			\end{equation}}
+		\item[$n_{\ce{H}}<n_\mathtt{crit}=A_\mathtt{ul}/\gamma _\mathtt{ul}$]{LTE:
+		\begin{equation}
+		\Lambda _\mathtt{H.ul} = n_\mathtt{l}  A _\mathtt{ul} \Delta E _\mathtt{ul} = \frac{g_\mathtt{u}}{g_\mathtt{l}} n_\mathtt{l} A _\mathtt{ul} \Delta E_\mathtt{ul} e^{-T_o/T}
+		\end{equation}
+	}
+	\end{description}
+
+\begin{block}{Κύριοι Ψύκτες}
+			\begin{equation}
+		\Lambda _{\ce{H - OI}}=\num{3.2e-22} \left( \frac{n_{\ce{H}}}{\SI{1e3}{cm^{-3}}} \right)^2 e^{\left( \frac{\SI{-230}{K}}{T} \right) } \qq{(\si{erg.cm^{-3}.s^{-1}})} 
+		\end{equation}
+		\begin{equation}
+	\Lambda _{\ce{H - CII}}=\num{4.8e-21} \left( \frac{n_{\ce{H}}}{\SI{1e3}{cm^{-3}}} \right)^2 e^{\left( \frac{\SI{-92}{K}}{T} \right) } \qq{(\si{erg.cm^{-3}.s^{-1}})} 
+	\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{Μηχανισμοί Ψύξης}{Ψύξη μορίων και σκόνης}
+	\begin{itemize}
+		\item{Στις χαμηλές θερμοκρασίες (<\SI{100}{K}) κύριος ψύκτης είναι το \ce{CO}.}
+		\item{Πολύπλοκος μηχανισμός καθώς σε μεγάλο βαθμό οι εκπομπές είναι οπτικά πυκνές.}
+	\end{itemize}
+	\begin{equation}
+	\Lambda _{\ce{CO}}=\num{8e-24} \frac{(J^*+1)^5}{\theta (2J^*+1)} e^{-\frac{(J^*+1)(J^*+2)}{2\theta}}
+	\left( \frac{n_{\ce{H}}}{\SI{1e3}{cm^{-3}}} \right)  \qq{(\si{erg.cm^{-3}.s^{-1}})} 
+	\end{equation}
+
+	\begin{itemize}
+		\item{Οι κόκκοι σκόνης θερμαίνονται εκτός από την απορρόφηση στο υπεριώδες και οπτικό και μέσω συγκρούσεων με τα μόρια και άτομα του νέφους}
+		\item{θεωρώντας τους σαν  μέλαν σώμα με τυπική θερμοκρασία \SI{30}{K} εκπέμπουν με μέγιστο στα \SI{100}{\mu m}}
+	\end{itemize}
+	\begin{equation}
+	\Lambda _{\ce{CO}}=\num{1.6e-22} \left( \frac{n_{\ce{H}}}{\SI{1e3}{cm^{-3}}} \right) 
+	\left( \frac{T_d}{\SI{10}{K}} \right)^6  \qq{(\si{erg.cm^{-3}.s^{-1}})} 
+	\end{equation}
 \end{frame}
 
 \begin{frame}{Αριθμητικές υδροδυναμικές προσομοιώσεις}{Εξισώσεις Διατήρησης}
@@ -684,13 +740,13 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 \end{columns}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{No Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{No Cooling}
 \begin{center}
 	\includegraphics[width=1\linewidth]{../Document/DataImages/NoCoolingRHOquad}
 \end{center}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Tabulated Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{Tabulated Cooling}
 		Το οπτικό βάθος για ένα φωτόνιο που εκπέμπεται μέσα στο νέφος είναι:
 	\begin{equation}
 	\tau = nL\sigma _T\simeq \num{6.65e-3}
@@ -710,7 +766,7 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 \end{columns}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Tabulated Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{Tabulated Cooling}
 Χρονική κλίμακα ψύξης του νέφους:
 	\begin{equation}
 	\tau _c =\frac{ \rho e} {n^2 \Lambda (T)}=
@@ -724,7 +780,7 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 \end{center}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Tabulated Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{Tabulated Cooling}
 \begin{columns}
 	\column{0.55\textwidth}
 	\begin{center}
@@ -737,7 +793,7 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 \end{columns}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Tabulated Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{Tabulated Cooling}
 	\begin{columns}
 		\column{0.5\textwidth}
 			\begin{center}
@@ -750,7 +806,7 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Tabulated Cooling/ Small time scale}
+\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{Tabulated Cooling/ Small time scale}
 	\begin{columns}
 		\column{0.5\textwidth}
 			\begin{center}
@@ -763,51 +819,51 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{SNEq Cooling}
-	\begin{columns}
-		\column{0.45\textwidth}
-			\begin{center}
-				\includegraphics[width=1\linewidth]{../Document/DataImages/SNCoolingRHOquad}
-			\end{center}
-		\column{0.55\textwidth}
-			Σε κάθε βήμα της προσομοίωσης ο κώδικας ολοκληρώνει μαζί με τις υδροδυναμικές εξισώσεις και την χρονική μεταβολή του $x_{\ce{HI}}$ 
-		μαζί με την εξίσωση της ενέργειας:
-		\begin{equation}
-		\pdv{t}(\rho e)=-\Lambda=-n_e n_{\ce{H}} \left( \sum\limits_{k=1}^{16}j_k +w_{i/r} \right) 
-		\end{equation}
-		όπου η άθροιση στα $k$ υπολογίζει 16 διαφορετικές γραμμές εκπομπής.
-	\end{columns}
-%	Θεωρήσαμε σαν αρχική συνθήκη το ποσοστό του ουδετέρου υδρογόνου να είναι στο εσωτερικό του νέφους $x_{\ce{HI}}=0.1$ οπότε θα περιμέναμε λόγω της χαμηλής θερμοκρασίας και υψηλής πυκνότητας το ποσοστό αυτό να αυξηθεί. Στο εξωτερικό του νέφους, με το ίδιο σκεπτικό, χρησιμοποιούμε τη τιμή $x_{\ce{HI}}=0.9$ οπότε αντίστοιχα περιμένουμε λόγω της υψηλής θερμοκρασίας και της χαμηλής πυκνότητας σχεδόν ολόκληρο το υδρογόνου να είναι σε ατομική μορφή. 
-\end{frame}
+%\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{SNEq Cooling}
+%	\begin{columns}
+%		\column{0.45\textwidth}
+%			\begin{center}
+%				\includegraphics[width=1\linewidth]{../Document/DataImages/SNCoolingRHOquad}
+%			\end{center}
+%		\column{0.55\textwidth}
+%			Σε κάθε βήμα της προσομοίωσης ο κώδικας ολοκληρώνει μαζί με τις υδροδυναμικές εξισώσεις και την χρονική μεταβολή του $x_{\ce{HI}}$ 
+%		μαζί με την εξίσωση της ενέργειας:
+%		\begin{equation}
+%		\pdv{t}(\rho e)=-\Lambda=-n_e n_{\ce{H}} \left( \sum\limits_{k=1}^{16}j_k +w_{i/r} \right) 
+%		\end{equation}
+%		όπου η άθροιση στα $k$ υπολογίζει 16 διαφορετικές γραμμές εκπομπής.
+%	\end{columns}
+%%	Θεωρήσαμε σαν αρχική συνθήκη το ποσοστό του ουδετέρου υδρογόνου να είναι στο εσωτερικό του νέφους $x_{\ce{HI}}=0.1$ οπότε θα περιμέναμε λόγω της χαμηλής θερμοκρασίας και υψηλής πυκνότητας το ποσοστό αυτό να αυξηθεί. Στο εξωτερικό του νέφους, με το ίδιο σκεπτικό, χρησιμοποιούμε τη τιμή $x_{\ce{HI}}=0.9$ οπότε αντίστοιχα περιμένουμε λόγω της υψηλής θερμοκρασίας και της χαμηλής πυκνότητας σχεδόν ολόκληρο το υδρογόνου να είναι σε ατομική μορφή. 
+%\end{frame}
+%
+%\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{SNEq Cooling}
+%	\begin{center}
+%		\includegraphics[width=0.9\linewidth]{../Document/DataImages/SNCoolingTMPcenterISM}
+%	\end{center}
+%\end{frame}
+%
+%\begin{frame}{Σφαιρικό νέφος μέσα στο ISM}{SNEq Cooling}
+%	\begin{columns}
+%		\column{0.5\textwidth}
+%			\begin{center}
+%				\includegraphics[width=1\linewidth]{../Document/DataImages/SNCoolingPRSprofile}
+%			\end{center}
+%		\column{0.5\textwidth}
+%			\begin{center}
+%				\includegraphics[width=1\linewidth]{../Document/DataImages/SNCoolingTMPprofile}
+%			\end{center}
+%	\end{columns}
+%Λόγω της σχεδόν ισοδύναμης ψύξης του νέφους με το μεσοαστρικό περιβάλλον η διαφορά πίεσης είναι μικρότερη όπως και η ταχύτητα του ήχου στο εσωτερικό του νέφους με αποτέλεσμα η φαινομενική κατάρρευση της κεντρικής περιοχής να είναι πολύ πιο αργή σε σχέση με το Tabulated Cooling.
+%\end{frame}
+%
+%\begin{frame}{Σφαιρικό νέφος μέσα στo ISM}{SNEq Cooling}
+%	
+%\begin{center}
+%	\includegraphics[width=0.85\linewidth]{../Document/DataImages/SNEQcooling-function}
+%\end{center}
+%\end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{SNEq Cooling}
-	\begin{center}
-		\includegraphics[width=0.9\linewidth]{../Document/DataImages/SNCoolingTMPcenterISM}
-	\end{center}
-\end{frame}
-
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{SNEq Cooling}
-	\begin{columns}
-		\column{0.5\textwidth}
-			\begin{center}
-				\includegraphics[width=1\linewidth]{../Document/DataImages/SNCoolingPRSprofile}
-			\end{center}
-		\column{0.5\textwidth}
-			\begin{center}
-				\includegraphics[width=1\linewidth]{../Document/DataImages/SNCoolingTMPprofile}
-			\end{center}
-	\end{columns}
-Λόγω της σχεδόν ισοδύναμης ψύξης του νέφους με το μεσοαστρικό περιβάλλον η διαφορά πίεσης είναι μικρότερη όπως και η ταχύτητα του ήχου στο εσωτερικό του νέφους με αποτέλεσμα η φαινομενική κατάρρευση της κεντρικής περιοχής να είναι πολύ πιο αργή σε σχέση με το Tabulated Cooling.
-\end{frame}
-
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{SNEq Cooling}
-	
-\begin{center}
-	\includegraphics[width=0.85\linewidth]{../Document/DataImages/SNEQcooling-function}
-\end{center}
-\end{frame}
-
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Η2 Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στo ISM}{Η2 Cooling}
 	Το H2COOL εισάγει 2  μεταβλητές το ποσοστό ιονισμένου υδρογόνου $x_{\ce{HII}}$ και το ποσοστό μοριακού Υδρογόνου $x_{\ce{H2}}$.
 	\begin{columns}
 		\column{0.5\textwidth}
@@ -833,14 +889,14 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Η2 Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στo ISM}{Η2 Cooling}
 			\begin{center}
 				\includegraphics[width=0.6\linewidth]{../Document/DataImages/H2CoolingRHOquad}
 			\end{center}
 
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Η2 Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στo ISM}{Η2 Cooling}
 	\begin{center}
 		\includegraphics[height=0.25\textheight]{../Document/DataImages/H2CoolingH2quad}
 	\end{center}
@@ -852,7 +908,7 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 	\end{center}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Η2 Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στo ISM}{Η2 Cooling}
 	\begin{columns}
 		\column{0.5\textwidth}
 		
@@ -867,23 +923,27 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 \end{frame}
 
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Η2 Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στo ISM}{Η2 Cooling}
 \begin{center}
 	\includegraphics[width=0.8\linewidth]{../Document/DataImages/H2CoolingTMPcenterISM}
 \end{center}
 \end{frame}
 
-\begin{frame}{Σφαιρικό νέφος μέσα στην ISM}{Η2 Cooling}
+\begin{frame}{Σφαιρικό νέφος μέσα στo ISM}{Η2 Cooling}
 \begin{center}
 	\includegraphics[width=0.85\linewidth]{../Document/DataImages/Η2cooling-function}
 \end{center}
 \end{frame}
 
-\begin{frame}{Cooling Functions}
-\begin{center}
-	\includegraphics[width=0.8\linewidth]{../Document/DataImages/cooling-function}
-\end{center}
+\begin{frame}{Σφαιρικό νέφος μέσα στo ISM}{Σύγκριση Tabulated με Η2 Cooling}
+	
 \end{frame}
+
+%\begin{frame}{Cooling Functions}
+%\begin{center}
+%	\includegraphics[width=0.8\linewidth]{../Document/DataImages/cooling-function}
+%\end{center}
+%\end{frame}
 
 \begin{frame}{Βαρύτητα}%{}
 	Ο PLUTO δεν μπορεί να χειριστεί την ιδιοβαρύτητα, άρα θα χρησιμοποιήσουμε τη προσέγγιση ενός ομοιογενούς βαρυτικού δυναμικού ομογενούς σφαίρας στο εσωτερικό του νέφους και ένα δυναμικό σημειακής μάζας στο εξωτερικό:
@@ -1011,19 +1071,85 @@ q(x_4,t_1)&=\xi _1 ^R r_1 +\xi _2 ^R r_2 + \xi _3 ^R r_3
 \end{columns}
 \end{frame}
 
-\begin{frame}{}%{}
+\begin{frame}{Μοντέλο κατανομής Πυκνότητας}{Motivation}
+	\begin{columns}
+		\column{0.5\textwidth}
+			\begin{center}
+				\includegraphics[width=1\linewidth]{../Document/DataImages/SimRHOProfile}
+			\end{center}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item{Θα χρησιμοποιήσουμε το μοντέλο για τη προσομοίωση της αλληλεπίδρασης Πίδακα με Νέφος}
+			\item{Η κατανομή του νέφους μένει σταθερή για χρονική κλίμακα μεγαλύτερη από το χρόνο της αλληλεπίδρασης}
+		\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Αλληλεπίδραση Σχετικιστικού Πίδακα με το ISM}
 	\begin{columns}
 		\column{0.5\textwidth}
 		
 \begin{center}
-	\includegraphics[width=1\linewidth]{../Document/DataImages/SimRHOProfile}
+	\includegraphics[width=1\linewidth]{../Document/DataImages/JetISMRHO}
 \end{center}
 		\column{0.5\textwidth}
 		
 \begin{center}
-	\includegraphics[width=1\linewidth]{../Document/DataImages/SimTMPProfile}
+	\includegraphics[width=1\linewidth]{../Document/DataImages/JetISMV}
 \end{center}
 	\end{columns}
+\end{frame}
+
+\begin{frame}{Αλληλεπίδραση Σχετικιστικού Πίδακα με το ISM}
+	
+\begin{center}
+	\includegraphics[width=1\linewidth]{../Document/DataImages/Shock-Shock}
+\end{center}
+\begin{itemize}
+	\item{Συμφωνία με τη προσομοίωση}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}%{Αλληλεπίδραση Σχετικιστικού Πίδακα με το ISM/Cloud}
+	\begin{columns}
+		\column{0.5\textwidth}
+			\begin{center}
+				\includegraphics[width=0.925\linewidth]{../Document/DataImages/JetCloudRHO}
+			\end{center}
+		\column{0.5\textwidth}
+			\begin{center}
+				\includegraphics[width=0.925\linewidth]{../Document/DataImages/JetCloudV}
+			\end{center}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Αλληλεπίδραση Σχετικιστικού Πίδακα με το ISM/Cloud}
+	
+\begin{center}
+	\includegraphics[width=1\linewidth]{../Document/DataImages/RatioEscapedGas}
+\end{center}
+Το μεγάλο ποσοστό υψηλών ταχυτήτων συμφωνεί με αντίστοιχες large-scale προσομοιώσεις (Wagner, Bicknell (2011))
+\begin{itemize}
+	\item{Η προσομοίωση είναι 2D}
+	\item{Δεν έχουμε λάβει υπόψιν την επίδραση των μαγνητικών πεδίων}
+	\item{Επίδραση από τα Boundaries}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Αλληλεπίδραση Σχετικιστικού Πίδακα με το ISM }{Σύγκριση με παρατηρήσεις}
+	
+\begin{center}
+	\includegraphics[width=1\linewidth]{Images/thejetofabla}
+\end{center}
+\end{frame}
+
+\begin{frame}{Συμπεράσματα/Μελλοντική δουλειά}
+	\begin{itemize}
+		\item{Παρά τη χαμηλη υπολογιστική ισχύ και τις μικρές δυνατότητες που μας έδωσε ο Pluto τα αποτελέσματα ήταν ικανοποιητικά}
+		\item{ARES}
+		\item{Cooling Function H2}
+	\end{itemize}
 \end{frame}
 	
 %	Ρεαλιστικότερες λύσεις - χωρίς ασυνέχειες στο κέντρο της σφαίρας - προσεγγίζονται ικανοποιητικά με τη παραπάνω εξίσωση μέχρι μια κρίσιμη απόσταση $r_c=\frac{c_s}{\sqrt{4\pi G \rho _c}}$ όπου $\rho _c$ η πυκνότητα στο κέντρο $(r=0)$.  Η θεωρητική αυτή κατανομή πυκνοτήτων ονομάζεται σφαίρα Bonnor - Ebert.
