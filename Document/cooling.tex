@@ -73,13 +73,13 @@
 	Σκοπός μας είναι να εστιάσουμε στην επιρροή της ψύξης στη δυναμική του αερίου. Ο PLUTO μας δίνει αυτή τη δυνατότητα με τη χρήση διάφορων modules όπου το αέριο ψύχεται καθώς ακτινοβολεί (Radiation Cooling). 
 
 	\subsection{Οπτικό βάθος}
-	Το νέφος έχει αριθμητική πυκνότητα $\SI{1000}{cm^{-3}}$ άρα το οπτικό βάθος για ένα φωτόνιο που εκπέμπεται μέσα στο νέφος είναι:
+	Το νέφος έχει αριθμητική πυκνότητα $\SI{1000}{cm^{-3}}$ άρα το οπτικό βάθος για ένα φωτόνιο που εκπέμπεται στο οπτικό μέρος του φάσματος μέσα από το νέφος είναι:
 	\begin{equation}
 	\tau = nL\sigma _T\simeq \num{6.65e-3}
 	\end{equation}
 	όπου $\sigma _T = \SI{6.65e-25}{cm^2}$ είναι η ενεργός διατομή Thomson.
 	
-	Έτσι μπορούμε να συμπεράνουμε οτι είναι οπτικά αδιαφανές, άρα θεωρούμε ότι η ψύξη θα γίνεται ταυτόχρονα σε όλο τον όγκο του νέφους. 
+	Έτσι μπορούμε να συμπεράνουμε οτι είναι οπτικά αδιαφανές, άρα θεωρούμε ότι το κύριο μέρος της ψύξης θα γίνεται ταυτόχρονα σε όλο τον όγκο του νέφους. 
 	
 	\subsection{Tabulated Cooling}
 	Το πρώτο cooling module που θα χρησιμοποιήσουμε ονομάζεται Tabulated Cooling, το οποίο υπολογίζει τον όρο ψύξης $\Lambda (T )$ στην εξίσωση ενέργειας 
@@ -225,6 +225,7 @@
 %	
 %	Με βάση ένα εσφαλμένο μοντέλο έχουμε ενδείξεις για το πόσο σημαντικό ρόλο παίζει, σε νέφη τεραστίων διαστάσεων η ψύξη στις πολύ μικρές θερμοκρασίες. 
 %	
+
 	\subsection{SNEq Cooling}
 	Με βάση τα παραπάνω θα εξετάσουμε το δεύτερο module ψύξης μέσω ακτινοβολίας οπτικά αραιού μέσου του PLUTO, το οποίο ονομάζεται \textbf{Simplified Non-Equilibrium Cooling (SNEq)}. 
 	
@@ -264,6 +265,7 @@
 	&& 
 	c_i=\frac{\num{1.08e-8}\sqrt{T}}{\num{13.6}^2} e^{-\frac{\num{157890}}{\sqrt{T}}}
 	\end{align}
+	
 	
 	
 	\subsubsection{Προσομοίωση με SNEq Cooling}
@@ -384,24 +386,19 @@
 	\end{equation}
 	όπου ο όρος μεταφοράς $-\va{u}\cdot \grad{X_i}$ ολοκληρώνεται μαζί με τις υδροδυναμικές εξισώσεις μάζας, ορμής (hydro step) ενώ ο όρος $S_i$ ολοκληρώνεται κατά το βήμα της ψύξης (cooling step).
 	
+
+
+
+	
 	Οι ενεργειακές απώλειες λόγω ψύξης τελικά υπολογίζονται, εκτός από τις παραπάνω αντιδράσεις, από τις απώλειες ιονισμού λόγω κρούσης $\Lambda _{\mathtt{CI}}$ και επανασύνδεσης λόγω ακτινοβολίας $\Lambda _{\mathtt{RR}}$, απώλειες λόγω περιστροφής και ταλάντωσης (rotational-vibrational cooling) $\Lambda _{\mathtt{rotvib}}$ και διάσπασης (dissosiation) $\Lambda _{\mathtt{diss}}$ των μορίων \ce{H_2}, και της διαδικασίας αλληλεπίδρασης σκόνης-αερίου (gas-grain process) $\Lambda _{\mathtt{grain}}$.
 	\begin{equation}
 	\Lambda = \Lambda _{\mathtt{CI}} + \Lambda _{\mathtt{RR}} +\Lambda _{\mathtt{rotvib}} + \Lambda _{\mathtt{diss}} + \Lambda _{\mathtt{grain}}
 	\end{equation}
 	
-	\todo[inline]{Depending on the requirement, the user can add more components to the cooling function, for e.g., cooling due to fixed fractions of standard molecules like CO, OH, H 2 O etc or contributions from collisional excitation of lines as indicated in the SNEq module.}
-%
-%	\begin{marginfigure}
-%	\includegraphics[width=1.\linewidth]{DataImages/H2CoolingRHOquad}
-%	\caption{Η πυκνότητα του αερίου σε διάφορες χρονικές στιγμές}
-%	\label{fig:h2coolingrhoquad}
-%\end{marginfigure}	
-
-	\subsubsection{Προσομοίωση με H2COOL}
-		\marginpar{
+				\marginpar{
 		\begin{table}[H]
 			\caption{}Αρχικές συνθήκες για τα ποσοστά των \newline
-				διαφορετικών μορφών Υδρογόνου \newline
+			διαφορετικών μορφών Υδρογόνου \newline
 			\label{tab:h2sc}
 			\begin{tabular}{|l|  c |  c| c|}
 				\toprule
@@ -413,23 +410,21 @@
 			\end{tabular}
 		\end{table}
 	}
+	
+%	\todo[inline]{Depending on the requirement, the user can add more components to the cooling function, for e.g., cooling due to fixed fractions of standard molecules like CO, OH, H 2 O etc or contributions from collisional excitation of lines as indicated in the SNEq module.}
+%%
+%	\begin{marginfigure}
+%	\includegraphics[width=1.\linewidth]{DataImages/H2CoolingRHOquad}
+%	\caption{Η πυκνότητα του αερίου σε διάφορες χρονικές στιγμές}
+%	\label{fig:h2coolingrhoquad}
+%\end{marginfigure}	
+
+	\subsubsection{Προσομοίωση με H2COOL}
+
 
 	Ακολουθώντας την ίδια πορεία με προηγουμένως ορίζουμε στις αρχικές συνθήκες τα ποσοστά μοριακού, ουδετέρου και ιονισμένου υδρογόνου όπως φαίνονται στο πίνακα~\ref{tab:h2sc}.
 	
-	\begin{marginfigure}
-		\centering
-		\includegraphics[width=1\linewidth]{DataImages/H2CoolingPRSprofile}
-		\caption{}
-		\label{fig:h2coolingprsprofile}
-	\end{marginfigure}
-	
-	\begin{marginfigure}
-		\centering
-		\includegraphics[width=1\linewidth]{DataImages/H2CoolingTMPprofile}
-		\caption{}
-		\label{fig:h2coolingtmpprofile}
-	\end{marginfigure}
-	
+
 	
 \begin{figure}[h]
 	\centering
@@ -438,27 +433,44 @@
 	\label{fig:h2coolingrhoquad}
 \end{figure}
 
+	\begin{marginfigure}
+	\centering
+	\includegraphics[width=1\linewidth]{DataImages/H2CoolingTMPprofile}
+	\caption{}
+	\label{fig:h2coolingtmpprofile}
+\end{marginfigure}
+
+	\begin{marginfigure}
+	\centering
+	\includegraphics[width=1\linewidth]{DataImages/H2CoolingPRSprofile}
+	\caption{}
+	\label{fig:h2coolingprsprofile}
+\end{marginfigure}
+
+
 
 	Το πρώτο που παρατηρούμε είναι ότι το νέφος διαστέλλεται σε χρονική κλίμακα τάξης του crossing time. Ο λόγος είναι γιατί η διαφορά πιέσεων είναι πολύ μεγαλύτερη καθώς το κεντρικό τμήμα του νέφους διατηρεί τη πίεση στα ίδια επίπεδα με την αρχική πίεση $10^{-8}$. Για να αλλάξει η πυκνότητα στο εσωτερικό του νέφους χρειάζεται ένας αρκετά μεγάλος χρόνος, άρα η σχετική στασιμότητα της πίεσης σημαίνει και στασιμότητα της θερμοκρασίας. Όντως όπως βλέπουμε και στο σχήμα~\ref{fig:h2coolingtmpprofile} η θερμοκρασία του νέφους μειώνεται πάρα πολύ αργά (τάξης εκατομμυρίων ετών ενώ η αντίστοιχη σε μέγεθος μείωση της θερμοκρασίας για το Tabulated Cooling ήταν τάξης ετών). Η διαφορά αυτή οφείλεται στο ότι το module H2COOL απευθύνεται αυστηρά στις μεταβάσεις και μεταβολές του Υδρογόνου. Οι ενεργειακές μεταβάσεις του υδρογόνου είναι σημαντικές για θερμοκρασίες περίπου πάνω από $\SI{100}{K}$. Για χαμηλότερες θερμοκρασίες κυρίαρχο ρόλο παίζουν τα \ce{CO}, \ce{OH}, \ce{H2O} και \ce{He}.
 	
 	Επίσης λόγω της απουσίας των γραμμών εκπομπής των μετάλλων η ψύξη του διαγαλαξιακού αέριου επιβραδύνεται αρκετά κοντά στους $\SI{3e3}{K}$ καθώς ολόκληρο το υδρογόνο μετατρέπεται σε ουδέτερο (σχήμα \ref{fig:h2coolingtmpcenterism}). 
 	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\linewidth]{DataImages/H2CoolingTMPcenterISM}
+		\caption{}
+		\label{fig:h2coolingtmpcenterism}
+	\end{figure}
+
 		Τα αποτελέσματα αυτά γίνονται απόλυτα κατανοήτα από τη καμπύλη ψύξης που παράξαμε για μερικές χαρακτηριστικές τιμές του ποσοστού ιονισμένου, ουδετέρου και μοριακού υδρογόνου στο σχήμα \ref{fig:h2cooling-function}.
 	
 
-\begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{DataImages/H2CoolingTMPcenterISM}
-	\caption{}
-	\label{fig:h2coolingtmpcenterism}
-\end{figure}
+
 
 %
 %	Οι παρατηρήσεις των μοριακών νεφών μας δίνουν θερμοκρασίες της τάξεως των $\SI{30}{K}$. Η ασυμφωνία με την προσομοίωση εξηγείται καθώς 
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=1\linewidth]{DataImages/Η2cooling-function}
-		\caption{}
+		\caption{H συνάρτηση ψύξης για το H2Cool}
 		\label{fig:h2cooling-function}
 	\end{figure}
 	
@@ -475,6 +487,11 @@
  Συμπεραίνουμε λοιπόν ότι παρότι το H2Cool αποδίδει πολύ καλύτερα από το SNEq σαν module που εκτελεί ταυτόχρονα και χημικές διεργασίες, η συμπεριφορά του στις πολύ χαμηλές θερμοκρασίες είναι ανεπαρκής λόγω έλλειψης των γραμμών εκπομπής των μορίων \ce{CO}, \ce{OH} και \ce{H2O}.
 
  Έτσι στη συνέχεια θα χρησιμοποιήσουμε σαν βέλτιστη επιλογή το Tabulated Cooling Module.
+
+
+
+
+
 
 	\newpage
 	
